@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 
 @Composable
 fun HomeScreen(
@@ -19,7 +18,6 @@ fun HomeScreen(
     val uiState by viewModel.uiState.collectAsState()
     val state = uiState
 
-    // 1. Scaffoldで囲む
     Scaffold(
         modifier = Modifier.fillMaxSize() // 画面いっぱいに広げる
     ) { innerPadding ->
