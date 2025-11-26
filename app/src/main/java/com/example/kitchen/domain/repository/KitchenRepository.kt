@@ -4,4 +4,6 @@ import com.example.kitchen.domain.model.UserStats
 
 interface KitchenRepository {
     suspend fun getUserStats(): UserStats
+
+    suspend fun updateStatus(newStats: UserStats)
 }

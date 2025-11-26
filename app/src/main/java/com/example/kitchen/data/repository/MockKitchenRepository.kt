@@ -7,12 +7,21 @@ import kotlin.time.Duration.Companion.seconds
 
 /** Mock implementation of KitchenRepository for testing purposes */
 class MockKitchenRepository : KitchenRepository {
-    override suspend fun getUserStats(): UserStats {
-        delay(1.seconds)
+    private var currentStats = UserStats(
+        streak = 0,
+        totalSavings = 0
+    )
 
-        return UserStats(
-            streak = 1,
-            totalSavings = 5
-        )
+    // userStatsを取得する（擬似的に遅延を入れる）
+    override suspend fun getUserStats(): UserStats {
+        delay(0.5.seconds)
+
+        return currentStats
+    }
+
+    // userStatsを更新する（擬似的に遅延を入れる）
+    override suspend fun updateStatus(newStats: UserStats) {
+        delay(0.5.seconds)
+        currentStats = newStats
     }
 }
