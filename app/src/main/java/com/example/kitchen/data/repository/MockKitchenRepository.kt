@@ -20,7 +20,7 @@ class MockKitchenRepository : KitchenRepository {
     }
 
     // userStatsを更新する（擬似的に遅延を入れる）
-    override suspend fun updateStatus(newStats: UserStats) {
+    override suspend fun updateStats(newStats: UserStats) {
         delay(0.5.seconds)
         currentStats = newStats
     }

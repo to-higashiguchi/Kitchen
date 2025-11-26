@@ -30,4 +30,26 @@ class HomeViewModel @Inject constructor(
             _uiState.value = status
         }
     }
+
+    fun onCook() {
+        viewModelScope.launch {
+            // 1. 現在の状態を取得(もしnullなら何もしない)
+            val current = _uiState.value ?: return@launch
+            // 2. cook() を呼び出して新しい状態を取得
+            val newStats = current.cook()
+            // 3. リポジトリに新しい状態を保存
+            repository.updateStats(newStats)
+            // 4. StateFlowを更新して画面を再描画
+            _uiState.value = newStats
+        }
+    }
+
+    fun onResetStreak() {
+        viewModelScope.launch {
+            val current = _uiState.value ?: return@launch
+            val newStats = current.resetStreak()
+            repository.updateStats(newStats)
+            _uiState.value = newStats
+        }
+    }
 }
